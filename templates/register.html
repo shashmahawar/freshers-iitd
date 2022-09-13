@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock head %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block main %}
+<form action="/register/{{token}}/" method="post">
+    {% csrf_token %}
+    <div class="form-input">
+        <p>Password</p>
+        <input type="password" name="password" id="password" onkeyup="passwordCheck()" required>
+    </div>
+    <div class="form-input">
+        <p>Confirm Password</p>
+        <input type="password" name="password2" id="password2" onkeyup="passwordCheck()" required>
+    </div>
+    <p class="error" id="signup-error"></p>
+    <input type="submit" value="Sign Up" class="button" id="signup-button" disabled>
+</form>
+{% endblock main %}
+
+{% block footer %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock footer %}

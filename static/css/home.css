@@ -1,0 +1,132 @@
+main {
+    background-color: #F1E3E3;
+}
+
+.homepage {
+    height: calc(100vh - 64px);
+    background: url('/static/img/home.png') no-repeat center center;
+    background-size: cover;
+}
+
+.homepage-heading {
+    padding: 0 10%;
+    font-family: 'Della Respira', serif;
+    padding-top: 10vh;
+}
+
+.homepage-heading h1 {
+    font-size: 7rem;
+    font-weight: 500;
+}
+
+.homepage-heading h3 {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+@media (max-width: 865px) {
+    .homepage-heading h1 {
+        font-size: 18vw;
+        text-align: center;
+    }
+    .homepage-heading h3 {
+        font-size: 7vw;
+        text-align: center;
+    }
+    .homepage-heading {
+        padding-top: 7vh;
+    }
+}
+
+.note {
+    min-height: calc(100vh - 64px);
+    background-color: #E8C1C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.note-box {
+    background-color: white;
+    width: 75%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    font-family: 'Della Respira', serif;
+    text-align: justify;
+}
+
+@media (max-width: 865px) {
+    .note-box {
+        width: 90%;
+    }
+}
+
+.cards {
+    min-height: calc(100vh - 64px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-image {
+    width: 18%;
+}
+
+.card-image img {
+    width: 100%;
+}
+
+.card-content {
+    width: 80%;
+}
+
+.card-content h3 {
+    font-family: 'Neuton', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2vh;
+}
+
+.card-content p {
+    font-family: 'Della Respira', serif;
+    font-size: 1.2rem;
+    margin-bottom: 4vh;
+}
+
+.card-content a {
+    font-family: 'Della Respira', serif;
+    color: #7241FF;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.dark-pink {
+    background-color: #E8C1C1 !important;
+}
+
+@media (max-width: 865px) {
+    .card {
+        flex-direction: column;
+        width: 90%;
+        margin-bottom: 20px;
+        padding: 20px 0px;
+    }    
+    .card-image {
+        display: none;
+    }
+}

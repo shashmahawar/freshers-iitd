@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/c78f989608.js" crossorigin="anonymous"></script>
+    {% block head %}{% endblock head %}
+    <title>{% block title %}{% endblock title %} | Freshers@IITD</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links-desktop">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'intros' %}">Intros</a></li>
+                <li><a href="{% url 'resources' %}" target="_blank">Resources</a></li>
+                <li><a href="{% url 'bsw' %}" target="_blank">BSW</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'signin' %}">Sign In</a></li>
+                {% endif %}
+            </ul>
+            <i class="fa-solid fa-bars nav-hamburger" onclick="navHandle()"></i>
+        </nav>
+        <div class="nav-links-phone" id="nav-links">
+            <ul>
+                <li><a href="{% url 'home' %}" onclick="navHandle()">Home</a></li>
+                <li><a href="{% url 'bsw' %}" target="_blank" onclick="navHandle()">BSW</a></li>
+                <li><a href="#" onclick="navHandle()">Resources</a></li>
+                <li><a href="{% url 'intros' %}" onclick="navHandle()">Intros</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" onclick="navHandle()">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'signin' %}" onclick="navHandle()">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+    <main>
+        {% block main %}{% endblock main %}
+    </main>
+    <footer>
+        <div class="footer-top">
+            <div class="footer-image">
+                <img src="{% static 'img/footer.png' %}">
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-inner">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://moodle.iitd.ac.in" target="_blank">Moodle</a></li>
+                        <li><a href="https://eacademics.iitd.ac.in/sportal/login" target="_blank">Eacademics</a></li>
+                        <li><a href="https://webmail.iitd.ac.in/roundcube/" target="_blank">Webmail</a></li>
+                        <li><a href="https://home.iitd.ac.in/uploads/course-of-study/IITD-CoS-2022-23-for-Web.pdf" target="_blank">Courses of Study</a></li>
+                        <li><a href="https://teams.microsoft.com/" target="_blank">Microsoft Teams</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-inner">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="https://discord.gg/AKe28Qsz47" target="_blank">Discord</a></li>
+                        <li><a href="https://instagram.com/iitdelhi_2026/" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2022 Copyright: All Rights Reserved</p>
+            <p>Created with ♡ by <a href="https://shashank.biz" target="_blank">Shashank Mahawar</a></p>
+        </div>
+    </footer>
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block footer %}{% endblock footer %}
+</body>
+</html>

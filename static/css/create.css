@@ -1,0 +1,122 @@
+main {
+    background-color: #F1E3E3;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 80%;
+    padding: 20px;
+}
+
+.form-input {
+    font-family: 'Della Respira', serif;
+    margin-bottom: 2vh;
+}
+
+.form-input p {
+    margin-bottom: 1vh;
+}
+
+.form-input input {
+    width: 100%;
+    padding: 10px 15px;
+    font-family: 'Della Respira', serif;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #777777;
+    border-radius: 5px;
+}
+
+.form-input input:focus {
+    outline: none;
+}
+
+.form-input textarea {
+    width: 100%;
+    resize: none;
+    padding: 10px 15px;
+    font-family: 'Della Respira', serif;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #777777;
+    border-radius: 5px;
+}
+
+.form-input textarea:focus {
+    outline: none;
+}
+
+.form-input-2-inner {
+    display: flex;
+    align-items: center;
+}
+
+.form-input-2-inner span {
+    margin-right: 10px;
+}
+
+.form-input-2 {
+    margin-bottom: 2vh;
+}
+
+.form-input-2 p {
+    font-family: 'Neuton', serif;
+    font-size: 0.8rem;
+    font-weight: 100;
+}
+
+@media (max-width: 865px) {
+    form {
+        width: 100%;
+    }
+}
+
+#about-char-count {
+    font-size: 1rem;
+}
+
+.input-note {
+    font-size: 0.8rem;
+    font-family: 'Neuton', serif;
+    font-weight: 100;
+}
+
+.required {
+    color: red;
+}
+
+.post-button {
+    width: 100%;
+    padding: 10px 15px;
+    font-family: 'Della Respira', serif;
+    font-size: 1rem;
+    color: white;
+    text-transform: uppercase;
+    background-color: #E8C1C1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.disclaimer {
+    font-size: 1rem;
+    font-family: 'Neuton', serif;
+    margin-bottom: 2vh;
+}
+
+.disclaimer h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.disclaimer span {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.disclaimer a {
+    color: black;
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+{% endblock head %}
+
+{% block title %}Reset Password{% endblock title %}
+
+{% block main %}
+<form action="/reset/{{token}}/" method="post">
+    {% csrf_token %}
+    <div class="form-input">
+        <p>Password</p>
+        <input type="password" name="password" id="password" onkeyup="passwordCheck()" required>
+    </div>
+    <div class="form-input">
+        <p>Confirm Password</p>
+        <input type="password" name="password2" id="password2" onkeyup="passwordCheck()" required>
+    </div>
+    <p class="error" id="reset-error"></p>
+    <input type="submit" value="Reset Password" class="button" id="reset-button" disabled>
+</form>
+{% endblock main %}
+
+{% block footer %}
+<script src="{% static 'js/reset.js' %}"></script>
+{% endblock footer %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/intros.css' %}">
+{% endblock head %}
+
+{% block title %}Intros{% endblock title %}
+
+{% block main %}
+{% if request.user.is_authenticated %}
+{% if not introduced %}
+<div class="buttons">
+    <a href="{% url 'create_intro' %}">Create Your Intro</a>
+</div>
+{% else %}
+<div class="cards">
+    <div class="card">
+        <div class="card-image">
+            <img src="/media/{{intro.image_1}}">
+        </div>
+        <div class="card-details">
+            <h3>{{intro.user.name}}</h3>
+            <p>{{intro.user.branch}} | {{intro.user.hostel}} | {{intro.user.year}} Entry</p>
+            <a href="/intro/{{intro.user.kerberos}}">View Intro</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+<h2>Latest Intros</h2>
+<div class="cards">
+    {% for intro in latest %}
+    <div class="card">
+        <div class="card-image">
+            <img src="/media/{{intro.image_1}}">
+        </div>
+        <div class="card-details">
+            <h3>{{intro.user.name}}</h3>
+            <p>{{intro.user.branch}} | {{intro.user.hostel}} | {{intro.user.year}} Entry</p>
+            <a href="/intro/{{intro.user.kerberos}}/">View Intro</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h2>Hostels</h2>
+<div class="cards">
+    {% for hostel in hostels %}
+    <div class="card">
+        <div class="card-image">
+            <img src="/static/img/hostels/{{hostel}}.png">
+        </div>
+        <div class="card-details">
+            <h3 style="margin-bottom: 25px; margin-top: 10px; font-size: 2rem;">{{hostel}}</h3>
+            <a href="/intro/hostel/{{hostel}}/">View Intros</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h2>Batches</h2>
+<div class="buttons">
+    <a href="/intro/year/2022/">2022 Entry</a>
+    <a href="/intro/year/2021/">2021 Entry</a>
+</div>
+{% endblock main %}

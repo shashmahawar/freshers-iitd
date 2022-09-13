@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock head %}
+
+{% block title %}Home{% endblock title %}
+
+{% block main %}
+<div class="homepage">
+    <div class="homepage-heading">
+        <h3>Welcome to</h3>
+        <h1>IIT Delhi</h1>
+    </div>
+</div>
+<div class="note">
+    <div class="note-box">
+        Hola Freshers, <br><br>
+        Welcome to a whole new life! After two grueling years of JEE preparation, we're sure you must be dying to live it up a little. Let me be the first one to assure you that this first year of years is gonna give you a lot more than you can ever expect. Lifelong friendships and romances, crazy adventures, deadlines that never indeed die, and much more are all coming along your way. <br><br>
+        Some of you will probably be VERY socially awkward and unsure what to do. Many confusing thoughts might be running through your mind regarding many subjects. We, your seniors here at IIT Delhi, would love nothing more than to ease this process for you guys. <br><br>
+        So, we present you to this website where you can get access to all the resources offered to you by IIT peeps. Here, you're gonna decipher all the weird terminology of Kerberos IDs, fachche, and of course, the quintessential BTs and the fundae to float through them. <br><br>
+        Wishing you all the best, and hoping you learn the IITian motto soon: Agala Sem Phodenge!
+    </div>
+</div>
+<div class="cards">
+    <div class="card">
+        <div class="card-image">
+            <img src="{% static 'img/intro.png' %}">
+        </div>
+        <div class="card-content">
+            <h3>Introduce Yourself</h3>
+            <p>So many faces, so many names! And just how many times can you call a person bro while desperately trying to remember their name? Fret not, for we are here for you. Here, introduce yourself to your peers with a short description and dazzle them with a few of your best pics.</p>
+            <a href="{% url 'intros' %}">Check it out ---></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <h3>IIT Delhi Culture</h3>
+            <p>IITD is more famous for its crazy culture amongst Delhites than for its academic rigor. As unfortunate as that sounds, it just means a hella lot of fun for all of us! The BSP regularly issues TL;DRs to keep you updated regarding these. Do participate in all events, and roar out your hostel’s slogan with pride!</p>
+            <a href="#" onclick="alert('Available Soon!'); return false;">Check it out ---></a>
+        </div>
+        <div class="card-image">
+            <img src="{% static 'img/culture.png' %}">
+        </div>
+    </div>
+</div>
+<div class="cards dark-pink">
+    <div class="card">
+        <div class="card-image">
+            <img src="{% static 'img/resources.png' %}">
+        </div>
+        <div class="card-content">
+            <h3>Academic Resources</h3>
+            <p>We know just how much you guys are gonna attend classes 🌝. Even if you don't attend them, check out these academic resources compiled by past batches for your courses before the dreaded minors and majors so that you don't start chanting agla sem phodenge a bit too early.</p>
+            <a href="{% url 'resources' %}" target="_blank">Check it out ---></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <h3>Board for Student Welfare</h3>
+            <p>We here at the BSW are here for you. No, I literally mean it. The purpose of our existence is to cater to your needs. Be it mentorship problems, academic stress, counseling sessions, or just some fundae you need from phaadu seniors; the BSW is here for you every step of the way.</p>
+            <a href="{% url 'bsw' %}" target="_blank">Check it out ---></a>
+        </div>
+        <div class="card-image">
+            <img src="{% static 'img/bsw.png' %}">
+        </div>
+    </div>
+</div>
+{% endblock main %}

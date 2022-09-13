@@ -1,0 +1,131 @@
+main {
+    background-color: #F1E3E3;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro {
+    width: 85%;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.intro-photos {
+    width: 47%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.intro-photos img {
+    width: 80%;
+    height: 70vh;
+    object-fit: contain;
+}
+
+.intro-photos i {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #777777;
+}
+
+.intro-images {
+    display: none;
+}
+
+.active-image {
+    display: block !important;
+}
+
+.intro-details {
+    width: 47%;
+    padding: 20px 0;
+    position: relative;
+}
+
+.intro-details h2 {
+    font-family: 'Neuton', serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.intro-main {
+    font-family: 'Della Respira', serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.intro-text {
+    font-family: 'Della Respira', serif;
+    font-size: 1rem;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+@media (max-width: 865px) {
+    .intro {
+        flex-direction: column;
+        margin-bottom: 20px;
+        width: 100%;
+        background-color: #F1E3E3;
+        box-shadow: none;
+    }
+    .intro-photos {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .intro-photos img {
+        width: 80%;
+        height: 50vh;
+    }
+    .intro-details {
+        width: 100%;
+        padding: 0;
+    }
+    .intro-details h2 {
+        text-align: center;
+    }
+    .intro-main {
+        text-align: center;
+    }
+
+}
+
+.fill-red {
+    color: #FF0000;
+}
+
+.like-button {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.like-button i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.like-button p {
+    font-family: 'Della Respira', serif;
+    font-weight: bold;
+}
+
+@media (max-width: 865px) {
+    .like-button {
+        bottom: -50px;
+        padding-bottom: 10px;
+    }
+    main {
+        padding-bottom: 5vh;
+    }
+}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock head %}
+
+{% block title %}Create Intro{% endblock title %}
+
+{% block main %}
+<form action="/intro/create/" method="post" onsubmit="return confirm('Are you sure you want to submit?');" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-input">
+        <p>Name <span class="required">*</span></p>
+        <input type="text" name="name" value="{{profile.name}}" disabled required>
+    </div>
+    <div class="form-input">
+        <p>Email Address <span class="required">*</span></p>
+        <input type="email" name="email" value="{{profile.email}}" disabled required>
+    </div>
+    <div class="form-input">
+        <p>Branch <span class="required">*</span></p>
+        <input type="text" name="branch" value="{{profile.branch}}" disabled required>
+    </div>
+    <div class="form-input">
+        <p>Hostel <span class="required">*</span></p>
+        <input type="text" name="hostel" value="{{profile.hostel}}" disabled required>
+    </div>
+    <div class="form-input">
+        <p>Entry Year <span class="required">*</span></p>
+        <input type="text" name="year" value="{{profile.year}}" disabled required>
+    </div>
+    <div class="form-input">
+        <p>About You <span class="required">*</span></p>
+        <textarea name="about" cols="30" rows="10" onkeyup="aboutCharCount(this)" required></textarea>
+        <span id="about-char-count" class="input-note">0/800</span>
+    </div>
+    <div class="form-input">
+        <p>Image 1 <span class="required">*</span></p>
+        <input type="file" name="image_1" accept="image/*" onchange="checkImageSize(this)" required>
+    </div>
+    <div class="form-input">
+        <p>Image 2</p>
+        <input type="file" name="image_2" accept="image/*" onchange="checkImageSize(this)">
+    </div>
+    <div class="form-input">
+        <p>Image 3</p>
+        <input type="file" name="image_3" accept="image/*" onchange="checkImageSize(this)">
+    </div>
+    <div class="form-input-2">
+        <div class="form-input-2-inner">
+            <span>Make Intro Public?</span>
+            <input type="checkbox" name="public" checked>
+        </div>
+        <p>When intro is public, everyone (non-IITD) will be able to view your intro.</p>
+    </div>
+    <div class="form-input-2">
+        <div class="form-input-2-inner">
+            <span>Show Likes Count?</span>
+            <input type="checkbox" name="likes" checked>
+        </div>
+        <p>If hidden, no one except you will be able to view the like count on your intro.</p>
+    </div>
+    <div class="disclaimer">
+        <h4>Important: 
+            <span>You will not be able to edit your intro once posted. So please make sure that all the information you provided is correct. The intro you provided will be posted on our Instagram page (<a href="https://instagram.com/iitdelhi_2026/" target="_blank">@iitdelhi_2026</a>) within 24 hours (Only for 2022 Entry Students). For any discrepancy, write to us at <a href="mailto:admin@iitdelhi.co">admin@iitdelhi.co</a></span>
+        </h4>
+    </div>
+    <input type="submit" value="Post" class="post-button">
+</form>
+{% endblock main %}
+
+{% block footer %}
+<script src="{% static 'js/create.js' %}"></script>
+{% endblock footer %}

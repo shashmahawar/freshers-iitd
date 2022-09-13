@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/intro.css' %}">
+{% endblock head %}
+
+{% block title %}{{intro.user.name}}{% endblock title %}
+
+{% block main %}
+<div class="intro">
+    <div class="intro-photos">
+        <i class="fa-solid fa-angle-left" onclick="moveLeft()"></i>
+        <img src="/media/{{intro.image_1}}" class="intro-images active-image">
+        {% if intro.image_2 %}
+        <img src="/media/{{intro.image_2}}" class="intro-images">
+        {% endif %}
+        {% if intro.image_3 %}
+        <img src="/media/{{intro.image_3}}" class="intro-images">
+        {% endif %}
+        <i class="fa-solid fa-angle-right" onclick="moveRight()"></i>
+    </div>
+    <div class="intro-details">
+        <h2>{{intro.user.name}}</h2>
+        <p class="intro-main">{{intro.user.branch}} | {{intro.user.hostel}} | {{intro.user.year}} Entry</p>
+        <div class="intro-text">{{intro.about|linebreaks}}</div>
+        <div class="like-button">
+            {% if request.user.is_authenticated %}
+            {% if liked %}
+            <i class="fa-solid fill-red fa-heart" onclick="changeLike(this)"></i>
+            {% else %}
+            <i class="fa-regular fa-heart" onclick="changeLike(this)"></i>
+            {% endif %}
+            {% endif %}
+            {% if intro.likes or request.user.username == intro.user.kerberos %}
+            <p><span id="like-count">{{likes.count}}</span> Likes</p>
+            {% elif request.user.is_authenticated %}
+            <p>Like</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main %}
+
+{% block footer %}
+<script src="{% static 'js/intro.js' %}"></script>
+{% endblock footer %}
