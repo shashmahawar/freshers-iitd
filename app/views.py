@@ -35,13 +35,20 @@ def hostel_intros(request, title):
         intros = Intro.objects.filter(user__hostel=title).order_by('user__name')
     else:
         intros = Intro.objects.filter(user__hostel=title, public=True).order_by('user__name')
+    intro_list = []
+    rep_list = []
+    for intro in intros:
+        if intro.representative:
+            rep_list.append(intro)
+        else:
+            intro_list.append(intro)
     return render(request, 'filter_intros.html', locals())
 
 def year_intros(request, title):
     if request.user.is_authenticated:
-        intros = Intro.objects.filter(user__year=title).order_by('user__name')
+        intro_list = Intro.objects.filter(user__year=title).order_by('user__name')
     else:
-        intros = Intro.objects.filter(user__year=title, public=True).order_by('user__name')
+        intro_list = Intro.objects.filter(user__year=title, public=True).order_by('user__name')
     return render(request, 'filter_intros.html', locals())
 
 def intro(request, username):

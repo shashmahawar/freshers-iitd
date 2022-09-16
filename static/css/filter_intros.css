@@ -13,6 +13,28 @@ h2 {
     text-align: center;
 }
 
+h4 {
+    font-family: 'Neuton', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.line-break {
+    width: 40%;
+    height: 1px;
+    border-bottom: 1px dashed black;
+    margin: auto;
+    margin-top: 1vh;
+}
+
+@media (max-width: 865px) {
+    .line-break {
+        width: 100%;
+    }
+}
+
 .cards {
     display: flex;
     margin-top: 5vh;

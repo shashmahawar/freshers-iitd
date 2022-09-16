@@ -27,6 +27,8 @@
     </div>
 </div>
 {% endif %}
+{% else %}
+<p class="signin-to-post"><a href="{% url 'signin' %}">Sign In</a> to post and view private intros!</p>
 {% endif %}
 <h2>Latest Intros</h2>
 <div class="cards">
