@@ -17,6 +17,8 @@ def checkKerberos(request):
     data = request.data
     kerberos = data.get('kerberos').lower()
     if KerberosData.objects.filter(kerberos=kerberos).exists():
+        if kerberos[3:5] != '22':
+            return Response({'message': 'This drive is currently open for First Year Students only!'}, status=status.HTTP_400_BAD_REQUEST)
         if User.objects.filter(username=kerberos).exists():
             return Response({'message': 'Already Registered'}, status=status.HTTP_200_OK)
         else:

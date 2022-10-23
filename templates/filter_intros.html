@@ -9,26 +9,6 @@
 
 {% block main %}
 <h2>{{title}}</h2>
-{% if rep_list %}
-<h4>Hostel Representatives</h4>
-<div class="cards">
-    {% for intro in rep_list %}
-    <div class="card">
-        <div class="card-image">
-            <img src="/media/{{intro.image_1}}">
-        </div>
-        <div class="card-details">
-            <h3>{{intro.user.name}}</h3>
-            <p>{{intro.user.branch}} | {{intro.user.hostel}} | {{intro.user.year}} Entry</p>
-            <a href="/intro/{{intro.user.kerberos}}/">View Intro</a>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-<div class="line-break"></div>
-{% else %}
-
-{% endif %}
 <div class="cards">
     {% for intro in intro_list %}
     <div class="card">

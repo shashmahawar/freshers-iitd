@@ -24,31 +24,27 @@ def intros(request):
             intro = Intro.objects.get(user=profile)
         else:
             introduced = False
-        latest = Intro.objects.all().order_by('-id')[:10]
+        latest = Intro.objects.filter(approved=True).order_by('-id')[:10]
     else:
-        latest = Intro.objects.filter(public=True).order_by('-id')[:10]
+        latest = Intro.objects.filter(public=True, approved=True).order_by('-id')[:10]
     hostels = utils.hostels
     return render(request, 'intros.html', locals())
 
 def hostel_intros(request, title):
     if request.user.is_authenticated:
-        intros = Intro.objects.filter(user__hostel=title).order_by('user__name')
+        intros = Intro.objects.filter(user__hostel=title, approved=True).order_by('user__name')
     else:
-        intros = Intro.objects.filter(user__hostel=title, public=True).order_by('user__name')
+        intros = Intro.objects.filter(user__hostel=title, public=True, approved=True).order_by('user__name')
     intro_list = []
-    rep_list = []
     for intro in intros:
-        if intro.representative:
-            rep_list.append(intro)
-        else:
-            intro_list.append(intro)
+        intro_list.append(intro)
     return render(request, 'filter_intros.html', locals())
 
 def year_intros(request, title):
     if request.user.is_authenticated:
-        intro_list = Intro.objects.filter(user__year=title).order_by('user__name')
+        intro_list = Intro.objects.filter(user__year=title, approved=True).order_by('user__name')
     else:
-        intro_list = Intro.objects.filter(user__year=title, public=True).order_by('user__name')
+        intro_list = Intro.objects.filter(user__year=title, public=True, approved=True).order_by('user__name')
     return render(request, 'filter_intros.html', locals())
 
 def intro(request, username):
@@ -56,6 +52,8 @@ def intro(request, username):
         profile = Profile.objects.get(kerberos=username)
         if Intro.objects.filter(user=profile).exists():
             intro = Intro.objects.get(user=profile)
+            if not intro.approved and request.user.username != profile.kerberos:
+                return HttpResponse('<h1>Not Found (404)</h1>')
             likes = Like.objects.filter(intro=intro)
             if request.user.is_authenticated:
                 if likes.filter(user=Profile.objects.get(kerberos=request.user.username)).exists():
@@ -74,6 +72,9 @@ def intro(request, username):
 
 def create_intro(request):
     if request.user.is_authenticated:
+        user = Profile.objects.get(kerberos=request.user.username)
+        if Intro.objects.filter(user=user).exists():
+            return redirect(f'/intro/{request.user.username}/')
         if request.method == 'POST':
             profile = Profile.objects.get(kerberos=request.user.username)
             about = request.POST['about']
@@ -82,6 +83,8 @@ def create_intro(request):
             image_1.name = f'image_1.{m[-1]}'
             if len(request.FILES) > 1:
                 image_2 = request.FILES['image_2']
+                if not image_2:
+                    image_2 = request.FILES['image_3']
                 m = image_2.name.split('.')
                 image_2.name = f'image_2.{m[-1]}'
             else:

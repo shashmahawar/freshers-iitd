@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['freshers.iitdelhi.co', '127.0.0.1']
+ALLOWED_HOSTS = ['home.freshers.cf', '127.0.0.1']
 
 
 # Application definition
@@ -81,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'freshers.wsgi.application'
 
-CSRF_TRUSTED_ORIGINS = ['https://freshers.iitdelhi.co', 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = ['https://home.freshers.cf', 'http://127.0.0.1:8000']
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -148,7 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = ['https://freshers.iitdelhi.co', 'http://127.0.0.1:8000']
+CORS_ALLOWED_ORIGINS = ['https://home.freshers.cf', 'http://127.0.0.1:8000']
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -158,4 +158,4 @@ EMAIL_PORT = 587 # 465 if error
 EMAIL_HOST_USER = os.getenv('EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('PASSWORD')
 
-SITE_NAME = 'https://freshers.iitdelhi.co'
+SITE_NAME = 'https://home.freshers.cf'

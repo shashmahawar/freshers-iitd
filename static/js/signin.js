@@ -39,7 +39,7 @@ function checkKerberos() {
             document.getElementById("initial-kerberos").disabled = true;
             document.getElementById("signin").style.display = "block";
             document.getElementById("forgot-password").style.display = "block";
-        } else if (response.status == 404) {
+        } else if (response.status == 404 || response.status == 400) {
             var error = document.getElementById("initial-error");
             error.style.display = "block";
             response.json().then(data => error.innerText = data.message);

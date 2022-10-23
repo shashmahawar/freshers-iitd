@@ -24,12 +24,12 @@ class Intro(models.Model):
     image_3 = models.ImageField(upload_to=get_image_path, blank=True)
     public = models.BooleanField(default=True)
     likes = models.BooleanField(default=True)
-    representative = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
 
     published_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.kerberos
+        return f"{self.user.kerberos} - {['Not Approved', 'Approved'][self.approved]}"
 
 class Like(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
