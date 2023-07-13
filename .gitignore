@@ -7,3 +7,5 @@ static/rest_framework
 *.csv
 
 media
+
+env
