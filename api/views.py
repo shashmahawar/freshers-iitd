@@ -9,6 +9,7 @@ import random
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import auth
+from django.conf import settings
 
 # Create your views here.
 
@@ -99,3 +100,123 @@ def forgot(request):
             return Response({'message': 'User not registered'}, status=status.HTTP_404_NOT_FOUND)
     else:
         return Response({'message': 'Kerberos not found in database'}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['GET'])
+def sitemap(request):
+    if request.user.is_superuser:
+        res = """<?xml version="1.0" encoding="UTF-8"?>
+
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+            <url>
+                <loc>https://freshers.iitd.site/</loc>
+                <priority>0.8</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/year/2023/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/year/2022/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/year/2021/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Aravali/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Girnar/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Himadri/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Jwalamukhi/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Kailash/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Karakoram/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Kumaon/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Nilgiri/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Sahyadri/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Satpura/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Shivalik/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Udaigiri/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Vindhyachal/</loc>
+                <priority>0.6</priority>
+            </url>
+
+            <url>
+                <loc>https://freshers.iitd.site/intro/hostel/Zanskar/</loc>
+                <priority>0.6</priority>
+            </url>
+        """
+        intros = Intro.objects.filter(public=True, approved=True)
+        for intro in intros:
+            res += f"""
+            <url>
+                <loc>https://freshers.iitd.site/intro/{intro.user.kerberos}/</loc>
+                <priority>0.5</priority>
+            </url>
+            """
+        res += """
+        </urlset>
+        """
+
+        with open(f'{settings.BASE_DIR}/static/sitemap.xml', 'w') as f:
+            f.write(res)
+
+        return Response({'message': 'Sitemap Refreshed'}, status=status.HTTP_200_OK)
+    return Response({'message': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
